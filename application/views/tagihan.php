@@ -61,7 +61,7 @@
         ?>
               <tr>
                 <td><?php echo $no?></td>
-                <td><?php echo $tagihan->bulan; ?></td>
+                <td><?php echo $tagihan->tgl_pembayaran; ?></td>
                 <td><?php echo $tagihan->angsuransipinjaman; ?></td>
                 <td><?php echo $tagihan->jasa_pinjaman; ?></td>
                 <td><?php echo $tagihan->jml_potongan; ?></td>
