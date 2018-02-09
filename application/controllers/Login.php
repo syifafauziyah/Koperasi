@@ -92,23 +92,21 @@ class Login extends CI_Controller {
 		$this->load->view('info', $data);
 	}
 
-	public function cari() {
-			$no_anggota = $this->input->post('no_anggota');
-			$pinjam = array(
-				'no_anggota' => $no_anggota
+	public function info_cari() {
+		$no_anggota = $this->input->get('no_anggota');
+		$pinjam = array(
+			'no_anggota' => $no_anggota
 			);
-			// $result = $this->Kopustika->cariNoPinjaman($no_anggota);
-			// if( $result->row() == null ) {
-			// 	$this->Kopustika->inputPinjam($pinjam);
-			// }
-			// $hasil = $this->Kopustika->cariNoTagihan($no_anggota);
-			// if( $hasil->row() == null ) {
-			// 	$this->Kopustika->inputTagihan($pinjam);
-			// }
-			$data["anggota"] = $this->Kopustika->pilih($no_anggota);
-			// var_dump($data);
-			// die();
-			$this->load->view('info', $data);
+		$data["anggota"] = $this->Kopustika->pilih($no_anggota);
+		// var_dump($data);
+		// die();
+		$this->load->view('info', $data);
+	}
+
+
+	public function cari() {
+		$no_anggota = $this->input->post('no_anggota');
+		redirect(base_url('index.php/login/info_cari?no_anggota=' . $no_anggota));
 	}
 
 	public function data() {
@@ -132,8 +130,6 @@ class Login extends CI_Controller {
 
 	public function tagihan() {
 		// $no_anggota = $this->uri->segment(3);
-		// $this->load->view('tagihan');
-		// $no_anggota = $this->uri->segment(3);
 		$no_anggota = $this->input->get('no_anggota');
 		$pinjam = array(
 			'no_anggota' => $no_anggota
@@ -141,6 +137,23 @@ class Login extends CI_Controller {
 		$hasil = $this->Kopustika->cariNoTagihan($no_anggota);
 			if( $hasil->row() == null ) {
 				// redirect(base_url('index.php/login/info_data'));
+				$this->load->view('tagihanKosong');
+			}
+			else {
+				$data["tagihan"] = $this->Kopustika->ambilData_tagihan($no_anggota);
+				// var_dump($data);
+				// die();
+				$this->load->view('tagihan', $data);
+			}
+	}
+
+	public function tagihanButton() {
+		$no_anggota = $this->uri->segment(3);
+		$pinjam = array(
+			'no_anggota' => $no_anggota
+			);
+		$hasil = $this->Kopustika->cariNoTagihan($no_anggota);
+			if( $hasil->row() == null ) {
 				$this->load->view('tagihanKosong');
 			}
 			else {

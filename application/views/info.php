@@ -84,7 +84,7 @@
 						</td>
 						<td>
 							<div id="button" class="col-sm-2">
-                  				 <a href="<?php echo base_url()."index.php/login/tagihan/".$anggota->no_anggota;?>" role="button">Tagihan</a>
+                  				 <a href="<?php echo base_url()."index.php/login/tagihanButton/".$anggota->no_anggota;?>" role="button">Tagihan</a>
 							</div>
 						</td>
 						<td>
