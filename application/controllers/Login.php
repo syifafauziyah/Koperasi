@@ -193,11 +193,11 @@ class Login extends CI_Controller {
 		$tagihan = array(
 			'no_anggota' => $no_anggota,
 			'jml_sisa' => $jml_sisa,
-			'bulan' => $bulan,
+			'bulan' => $startTime,
 			'angsuransipinjaman' => $angsuransipinjaman,
 			'jasa_pinjaman' => $jasa_pinjaman,
 			'jml_potongan' => $jml_potongan,
-			'tgl_pembayaran' => $startTime
+			'tgl_pembayaran' => $this->input->post('tgl_pembayaran')
 			);
 		// for ($x = 1; $x <= $bulan; $x++) {
   // 			$stmt->execute();
@@ -209,7 +209,6 @@ class Login extends CI_Controller {
 		if( $result->row() == null ) {
 			if( $this->Kopustika->inputDataPeminjaman($pinjam) && $this->Kopustika->inputDataTagihan($tagihan) == TRUE)
 			{
-				// $this->load->view('tagihan');
 				redirect(base_url('index.php/login/tagihan?no_anggota=' . $no_anggota));
 			} else {
 				$this->load->view('peminjaman');
