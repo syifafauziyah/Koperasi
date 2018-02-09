@@ -189,14 +189,15 @@ class Login extends CI_Controller {
 		$jasa_pinjaman = 0.01*$jml_pinjaman;
 		$jml_potongan = $jasa_pinjaman + $angsuransipinjaman;
 		$startTime = date("Y-m-d");
-		$cenvertedTime = date('Y-m-d',strtotime('+1 month',strtotime($startTime)));
+		$cenvertedTime = date('Y-m-d',strtotime("+1 month",strtotime($startTime)));
 		$tagihan = array(
 			'no_anggota' => $no_anggota,
 			'jml_sisa' => $jml_sisa,
-			'bulan' => $startTime,
+			'bulan' => $cenvertedTime,
 			'angsuransipinjaman' => $angsuransipinjaman,
 			'jasa_pinjaman' => $jasa_pinjaman,
 			'jml_potongan' => $jml_potongan,
+			'lama_pinjam' => $bulan,
 			'tgl_pembayaran' => $this->input->post('tgl_pembayaran')
 			);
 		// for ($x = 1; $x <= $bulan; $x++) {
